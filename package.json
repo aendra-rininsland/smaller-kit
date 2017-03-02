@@ -49,7 +49,7 @@
     "webpack-dev-server": "^2.4.1"
   },
   "dependencies": {
-    "g-ui": "financial-times/g-ui#react",
+    "g-ui": "github:financial-times/g-ui#jsx",
     "preact": "^7.2.0"
   }
 }
