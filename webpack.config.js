@@ -61,14 +61,16 @@ module.exports = {
         test: /\.json$/,
         loader: 'json-loader',
       },
-      // This allows you to `require` CSS files like modules.
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader',
-      },
       // Lastly, this enables you to load Sass files into modules (like g-ui).
       {
         test: /\.scss$/,
+        include: [
+          resolve(__dirname),
+          resolve(__dirname, 'bower_components'),
+          resolve(__dirname, 'node_modules', 'g-ui'), // For consuming g-ui as a package
+          resolve(__dirname, '..', 'g-ui'), // For developing g-ui locally
+          resolve(__dirname, '..', 'g-ui', 'bower_components'), // For developing g-ui locally
+        ],
         use: [{
           loader: 'style-loader', // creates style nodes from JS strings
         }, {
