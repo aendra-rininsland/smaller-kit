@@ -6,11 +6,11 @@
 */
 
 const { resolve } = require('path');
-const { HotModuleReplacementPlugin } = require('webpack');
+const StaticSiteGeneratorPlugin = require('static-site-generator-webpack-plugin');
 
 module.exports = {
   // This is the main file that gets loaded first; the "bootstrap", if you will.
-  entry: resolve(__dirname, 'index.jsx'),
+  entry: resolve(__dirname, 'render-server.js'),
 
   output: { // Transpiled and bundled output gets put in `build/bundle.js`.
     path: resolve(__dirname, 'dist'),
@@ -27,13 +27,6 @@ module.exports = {
   // devtool: 'cheap-module-eval-source-map',
   // devtool: 'eval-source-map',
 
-  // These options govern webpack-dev-server.
-  // @see https://webpack.js.org/configuration/dev-server/
-  devServer: {
-    overlay: true, // This makes it REALLY OBVIOUS when there are errors.
-    hot: true, // Enables Hot module replacement. This prevents needing to refresh to see changes.
-  },
-
   // How to resolve certain types of files
   resolve: {
     // This enables one to leave off the .jsx or .js extension when importing
@@ -48,7 +41,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: [
-          resolve(__dirname),
+          resolve(__dirname, 'src'),
           resolve(__dirname, 'node_modules', 'g-ui'), // For consuming g-ui as a package
           resolve(__dirname, '..', 'g-ui'), // For developing g-ui locally
         ],
@@ -83,6 +76,6 @@ module.exports = {
 
   // Sundry plugins needed for stuff to work properly.
   plugins: [
-    new HotModuleReplacementPlugin(),
+    new StaticSiteGeneratorPlugin(),
   ],
 };
