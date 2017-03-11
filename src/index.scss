@@ -2,13 +2,6 @@
  * Main stylesheet for Smarter Kit!
  */
 
-// Taken from https://github.com/Financial-Times/o-header/blob/master/demos/src/main.scss
-// Why this isn't in o-normalise I'm not entirely certain.
-html, body {
-  font-family: MetricWeb, sans-serif;
-  background: #fff1e0;
-}
-
-.g-body {
-  min-height: 50vh;
+body {
+  background: black;
 }

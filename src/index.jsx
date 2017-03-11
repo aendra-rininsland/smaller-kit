@@ -4,26 +4,29 @@
 
 import GPage from 'g-ui';
 import { h } from 'preact';
-
 import CONFIG from '../CONFIG';
-// import './index.scss';
 
 export { Helmet } from 'g-ui';
+
+// You can get content into Smarter Kit in a variety of ways:
+//
+// 1. Just use JSX and write pure html
+//
+// const content = <div><h1>Smarter Kit</h1><p>Your content here</p></div>
+//
+// 2. Create a Markdown react element:
+//
+// import ReactMarkdown from 'react-markdown';
+//
+// const markdown = `# Smarter Kit
+// Your content here
+// `;
+//
+// const content = <ReactMarkdown source={markdown} />;
+//
+// More to come!
+
 export default () => (
-  <GPage
-    origamiCSS={[
-      'o-fonts@^2',
-      'o-normalise@^1.2.1',
-      'o-header@^6.14.0',
-      'o-footer@^5.3.3',
-    ]}
-    origamiJS={[
-      'o-normalise@^1.2.1',
-      'o-header@^6.14.0',
-      'o-footer@^5.3.3',
-    ]}
-    config={CONFIG}
-  >
-    <h1>🎊 Welcome to Smarter Kit 🎉</h1>
-    <p>This is my body content</p>
+  <GPage config={CONFIG}>
+    {content || ''}
   </GPage>);

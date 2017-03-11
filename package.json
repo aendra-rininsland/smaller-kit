@@ -4,8 +4,12 @@
   "description": "Static-site generator using Webpack + Preact + JSX",
   "main": "client.js",
   "scripts": {
-    "build": "webpack",
-    "start": "webpack-dev-server",
+    "build": "npm-run-all -l -p js css",
+    "js": "webpack --env.production",
+    "css": "node-sass src/index.scss -o dist",
+    "develop:js": "webpack-dev-server",
+    "develop:css": "node-sass -w src/index.scss -o dist",
+    "start": "npm-run-all -c -l -p develop:*",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -49,6 +53,7 @@
     "extract-text-webpack-plugin": "^2.0.0",
     "html-webpack-harddisk-plugin": "^0.1.0",
     "html-webpack-plugin": "^2.28.0",
+    "node-sass": "^4.5.0",
     "sass-loader": "^6.0.2",
     "static-site-generator-webpack-plugin": "^3.3.0",
     "style-loader": "^0.13.2",
@@ -59,6 +64,7 @@
     "g-ui": "github:financial-times/g-ui#jsx",
     "preact": "^7.2.0",
     "preact-compat": "^3.13.1",
-    "preact-render-to-string": "^3.6.0"
+    "preact-render-to-string": "^3.6.0",
+    "react-markdown": "^2.4.5"
   }
 }

@@ -21,6 +21,20 @@ const CONFIG = {
   'flag:analytics': true,
   'tracking:product': null,
   'tracking:microsite': null,
+
+  origami: {
+    css: [
+      'o-fonts@^2',
+      'o-normalise@^1.2.1',
+      'o-header@^6.14.0',
+      'o-footer@^5.3.3',
+    ],
+    js: [
+      'o-normalise@^1.2.1',
+      'o-header@^6.14.0',
+      'o-footer@^5.3.3',
+    ],
+  },
 };
 
 module.exports = CONFIG;
