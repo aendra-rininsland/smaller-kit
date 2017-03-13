@@ -7,6 +7,7 @@ import { Helmet } from 'g-ui/g-head';
 import Page from './src';
 
 import CONFIG from './CONFIG';
+import css from './src/index.scss';
 
 const body = renderString(<Page />);
 const head = Helmet.rewind();
@@ -17,6 +18,9 @@ export default () => `<!doctype html>
     ${head.title.toString()}
     ${head.meta.toString()}
     ${head.link.toString()}
+    <style type="text/css">
+    ${css.toString()}
+    </style>
   </head>
   <body>
   ${body}

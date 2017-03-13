@@ -4,6 +4,7 @@
 
 import GPage from 'g-ui';
 import { h } from 'preact';
+
 import CONFIG from '../CONFIG';
 
 export { Helmet } from 'g-ui';
@@ -25,6 +26,8 @@ export { Helmet } from 'g-ui';
 // const content = <ReactMarkdown source={markdown} />;
 //
 // More to come!
+
+const content = '';
 
 export default () => (
   <GPage config={CONFIG}>

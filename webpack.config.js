@@ -6,7 +6,7 @@
 */
 
 const { resolve } = require('path');
-const { HotModuleReplacementPlugin, optimize } = require('webpack');
+const { HotModuleReplacementPlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
@@ -33,7 +33,7 @@ module.exports = env => ({
   devServer: {
     contentBase: resolve(__dirname, 'dist'), // Serve out of dist/
     overlay: true, // This makes it REALLY OBVIOUS when there are errors
-    hot: !env.production, // Hot module replacement. This prevents needing to refresh to see changes
+    hot: !(env && env.production), // Hot module replacement.
   },
 
   // How to resolve certain types of files
@@ -50,6 +50,7 @@ module.exports = env => ({
       {
         test: /\.(js|jsx)$/,
         loader: 'babel-loader',
+        exclude: /node_modules\/(?!g-ui)/,
       },
       // This nifty bit of magic right here allows us to load entire JSON files
       // synchronously using `require`, just like in NodeJS.
@@ -59,6 +60,28 @@ module.exports = env => ({
           resolve(__dirname, 'src'),
         ],
         loader: 'json-loader',
+      },
+      {
+        test: /\.scss$/,
+        include: [
+          resolve(__dirname, 'src'),
+        ],
+        use: [
+          {
+            loader: 'to-string-loader', // creates style nodes from JS strings
+          },
+          {
+            loader: 'css-loader', // translates CSS into CommonJS
+          },
+          {
+            loader: 'sass-loader', // compiles Sass to CSS
+            options: {
+              includePaths: [
+                'bower_components',
+              ],
+            },
+          },
+        ],
       },
     ],
   },
@@ -72,8 +95,8 @@ module.exports = env => ({
     }),
     new HtmlWebpackHarddiskPlugin(),
     new HotModuleReplacementPlugin(),
-    new optimize.UglifyJsPlugin({
-      compress: env.production, // compress only in production build
-    }),
+    // new optimize.UglifyJsPlugin({
+    //   compress: env && env.production, // compress only in production build
+    // }),
   ],
 });

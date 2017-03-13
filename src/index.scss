@@ -2,6 +2,8 @@
  * Main stylesheet for Smarter Kit!
  */
 
-body {
-  background: black;
+@import 'o-colors/main';
+
+div {
+  background: oColorsGetPaletteColor('orange');
 }
